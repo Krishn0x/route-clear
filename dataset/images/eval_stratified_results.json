@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "evaluation_timestamp": "2026-09-03T05:33:55.980921",
+    "evaluation_type": "stratified",
+    "run_id": "stratified_20260903053342",
+    "vlm_provider": "unknown",
+    "exact_model": "unknown",
+    "dataset_size": 12
+  },
+  "metrics": {
+    "total": 12,
+    "successful_calls": 0,
+    "timeouts": 0,
+    "api_failures": 12,
+    "parsing_failures": 0,
+    "extraction_perfect": 0,
+    "safety_perfect": 0,
+    "false_safes": 0,
+    "false_blocks": 0
+  },
+  "records": [
+    {
+      "filename": "challan_000.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_003.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_001.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_002.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_004.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_013.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_011.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_005.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_014.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_015.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_019.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_040.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    }
+  ]
+}

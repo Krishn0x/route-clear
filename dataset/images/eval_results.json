@@ -1,0 +1,772 @@
+{
+  "metadata": {
+    "evaluation_timestamp": "2026-09-03T05:22:18.752149",
+    "run_id": "20260903051935",
+    "vlm_provider": "unknown",
+    "exact_model": "unknown",
+    "dataset_size": 150
+  },
+  "metrics": {
+    "total": 150,
+    "successful_calls": 0,
+    "timeouts": 0,
+    "api_failures": 150,
+    "parsing_failures": 0,
+    "extraction_perfect": 0,
+    "safety_perfect": 0,
+    "false_safes": 0,
+    "false_blocks": 0
+  },
+  "records": [
+    {
+      "filename": "challan_003.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_002.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_001.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_004.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_007.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_006.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_008.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_005.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_009.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_012.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_010.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_011.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_013.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_014.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_015.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_016.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_017.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_018.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_019.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_020.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_021.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_023.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_022.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_026.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_024.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_025.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_027.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_029.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_030.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_028.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_031.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_034.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_033.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_032.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_035.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_037.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_036.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_038.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_039.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_040.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_041.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_042.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_043.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_045.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_044.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_047.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_046.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_049.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_048.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_000.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_050.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_051.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_053.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_052.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_055.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_056.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_054.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_057.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_058.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_060.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_061.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_059.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_062.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_063.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_064.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_065.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_066.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_068.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_067.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_069.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_070.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_071.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_073.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_072.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_074.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_075.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_076.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_077.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_078.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_079.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_081.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_080.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_082.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_083.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_084.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_086.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_085.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_087.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_088.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_090.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_089.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_091.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_092.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_093.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_094.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_096.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_095.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_097.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_098.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_099.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_100.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_101.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_102.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_103.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_104.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_105.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_106.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_108.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_109.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_107.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_110.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_111.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_112.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_114.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_113.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_115.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_117.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_116.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_120.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_118.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_119.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_121.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_122.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_125.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_123.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_124.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_127.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_126.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_128.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_129.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_130.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_131.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_132.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_133.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_134.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_135.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_136.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_137.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_138.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_139.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_140.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_141.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_142.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_143.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_144.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_145.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_146.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_148.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_147.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    },
+    {
+      "filename": "challan_149.png",
+      "error_type": "api_failure",
+      "error_message": "VLM Exception inside backend"
+    }
+  ]
+}

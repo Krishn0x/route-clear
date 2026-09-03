@@ -1,0 +1,19 @@
+node_modules/
+dist/
+build/
+.env
+__pycache__/
+*.pyc
+venv/
+env/
+.pytest_cache/
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploads and User Data
+backend/uploads/
+
+# Generated Dataset Images (large files)
+dataset/images/*.png
+dataset/images/*.jpg

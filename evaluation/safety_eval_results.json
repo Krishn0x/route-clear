@@ -1,0 +1,75 @@
+{
+  "metrics": {
+    "evaluation_type": "deterministic_safety_only",
+    "policy_thresholds": {
+      "auto_reversal_limit": "50.0%"
+    },
+    "total": 150,
+    "valid_records": 150,
+    "approved": 51,
+    "blocked": 99,
+    "false_safes": 0,
+    "false_blocks": 0,
+    "perfect_safety": 150,
+    "invariant_violations_in_dataset": 10
+  },
+  "scenario_metrics": {
+    "arithmetic_contradiction": {
+      "total": 19,
+      "approved": 0,
+      "blocked": 19,
+      "false_safes": 0,
+      "false_blocks": 0,
+      "correct": 19
+    },
+    "normal": {
+      "total": 53,
+      "approved": 51,
+      "blocked": 2,
+      "false_safes": 0,
+      "false_blocks": 0,
+      "correct": 53
+    },
+    "missing_sig": {
+      "total": 19,
+      "approved": 0,
+      "blocked": 19,
+      "false_safes": 0,
+      "false_blocks": 0,
+      "correct": 19
+    },
+    "zero_accepted": {
+      "total": 16,
+      "approved": 0,
+      "blocked": 16,
+      "false_safes": 0,
+      "false_blocks": 0,
+      "correct": 16
+    },
+    "full_reject": {
+      "total": 17,
+      "approved": 0,
+      "blocked": 17,
+      "false_safes": 0,
+      "false_blocks": 0,
+      "correct": 17
+    },
+    "excess_qty": {
+      "total": 10,
+      "approved": 0,
+      "blocked": 10,
+      "false_safes": 0,
+      "false_blocks": 0,
+      "correct": 10
+    },
+    "missing_qty": {
+      "total": 16,
+      "approved": 0,
+      "blocked": 16,
+      "false_safes": 0,
+      "false_blocks": 0,
+      "correct": 16
+    }
+  },
+  "failures": []
+}

@@ -1,0 +1,1952 @@
+[
+  {
+    "filename": "challan_000.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 22,
+      "accepted_quantity": 2,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_001.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 389,
+      "accepted_quantity": 380,
+      "damaged_quantity": 8,
+      "rejected_quantity": 1,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_002.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 268,
+      "accepted_quantity": 259,
+      "damaged_quantity": 9,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_003.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 122,
+      "accepted_quantity": 122,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_004.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 367,
+      "accepted_quantity": 0,
+      "damaged_quantity": 183,
+      "rejected_quantity": 184,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_005.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 182,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 182,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_006.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 319,
+      "accepted_quantity": 0,
+      "damaged_quantity": 159,
+      "rejected_quantity": 160,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_007.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 203,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 203,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_008.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 305,
+      "accepted_quantity": 0,
+      "damaged_quantity": 152,
+      "rejected_quantity": 153,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_009.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 50,
+      "accepted_quantity": 46,
+      "damaged_quantity": 3,
+      "rejected_quantity": 1,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_010.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 199,
+      "accepted_quantity": 191,
+      "damaged_quantity": 5,
+      "rejected_quantity": 3,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_011.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 283,
+      "accepted_quantity": 263,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_012.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 337,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 337,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_013.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 38,
+      "accepted_quantity": 88,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_014.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 477,
+      "accepted_quantity": 463,
+      "damaged_quantity": 9,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_015.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 145,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_016.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 214,
+      "accepted_quantity": 0,
+      "damaged_quantity": 107,
+      "rejected_quantity": 107,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_017.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 56,
+      "accepted_quantity": 56,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_018.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 315,
+      "accepted_quantity": 295,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_019.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 138,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_020.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 284,
+      "accepted_quantity": 264,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_021.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 11,
+      "accepted_quantity": 5,
+      "damaged_quantity": 4,
+      "rejected_quantity": 2,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_022.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 321,
+      "accepted_quantity": 301,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_023.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 408,
+      "accepted_quantity": 408,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_024.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 195,
+      "accepted_quantity": 188,
+      "damaged_quantity": 4,
+      "rejected_quantity": 3,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_025.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 384,
+      "accepted_quantity": 376,
+      "damaged_quantity": 7,
+      "rejected_quantity": 1,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_026.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 145,
+      "accepted_quantity": 145,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_027.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 383,
+      "accepted_quantity": 383,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_028.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 470,
+      "accepted_quantity": 455,
+      "damaged_quantity": 8,
+      "rejected_quantity": 7,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_029.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 293,
+      "accepted_quantity": 281,
+      "damaged_quantity": 3,
+      "rejected_quantity": 9,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_030.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 44,
+      "accepted_quantity": 39,
+      "damaged_quantity": 0,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_031.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 380,
+      "accepted_quantity": 380,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_032.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 58,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_033.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 37,
+      "accepted_quantity": 0,
+      "damaged_quantity": 18,
+      "rejected_quantity": 19,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_034.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 451,
+      "accepted_quantity": 447,
+      "damaged_quantity": 1,
+      "rejected_quantity": 3,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_035.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 152,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_036.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 35,
+      "accepted_quantity": 35,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_037.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 444,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 444,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_038.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 215,
+      "accepted_quantity": 213,
+      "damaged_quantity": 0,
+      "rejected_quantity": 2,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_039.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 411,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 411,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_040.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 411,
+      "accepted_quantity": 461,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_041.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 39,
+      "accepted_quantity": 22,
+      "damaged_quantity": 9,
+      "rejected_quantity": 8,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_042.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 446,
+      "accepted_quantity": 446,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_043.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 105,
+      "accepted_quantity": 95,
+      "damaged_quantity": 1,
+      "rejected_quantity": 9,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_044.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 136,
+      "accepted_quantity": 0,
+      "damaged_quantity": 68,
+      "rejected_quantity": 68,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_045.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 277,
+      "accepted_quantity": 277,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_046.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 212,
+      "accepted_quantity": 200,
+      "damaged_quantity": 2,
+      "rejected_quantity": 10,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_047.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 47,
+      "accepted_quantity": 97,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_048.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 47,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 47,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_049.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 461,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 461,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_050.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 370,
+      "accepted_quantity": 0,
+      "damaged_quantity": 185,
+      "rejected_quantity": 185,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_051.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 428,
+      "accepted_quantity": 416,
+      "damaged_quantity": 8,
+      "rejected_quantity": 4,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_052.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 293,
+      "accepted_quantity": 287,
+      "damaged_quantity": 2,
+      "rejected_quantity": 4,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_053.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 145,
+      "accepted_quantity": 125,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_054.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 57,
+      "accepted_quantity": 0,
+      "damaged_quantity": 28,
+      "rejected_quantity": 29,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_055.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 404,
+      "accepted_quantity": 392,
+      "damaged_quantity": 2,
+      "rejected_quantity": 10,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_056.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 297,
+      "accepted_quantity": 347,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_057.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 86,
+      "accepted_quantity": 66,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_058.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 230,
+      "accepted_quantity": 230,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_059.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 450,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 450,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_060.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 409,
+      "accepted_quantity": 395,
+      "damaged_quantity": 8,
+      "rejected_quantity": 6,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_061.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 419,
+      "accepted_quantity": 411,
+      "damaged_quantity": 2,
+      "rejected_quantity": 6,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_062.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 220,
+      "accepted_quantity": 270,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_063.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 456,
+      "accepted_quantity": 449,
+      "damaged_quantity": 0,
+      "rejected_quantity": 7,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_064.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 430,
+      "accepted_quantity": 424,
+      "damaged_quantity": 3,
+      "rejected_quantity": 3,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_065.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 405,
+      "accepted_quantity": 396,
+      "damaged_quantity": 4,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_066.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 24,
+      "accepted_quantity": 19,
+      "damaged_quantity": 1,
+      "rejected_quantity": 4,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_067.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 186,
+      "accepted_quantity": 186,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_068.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 470,
+      "accepted_quantity": 458,
+      "damaged_quantity": 9,
+      "rejected_quantity": 3,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_069.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 422,
+      "accepted_quantity": 422,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_070.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 230,
+      "accepted_quantity": 219,
+      "damaged_quantity": 1,
+      "rejected_quantity": 10,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_071.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 269,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 269,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_072.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 108,
+      "accepted_quantity": 108,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_073.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 301,
+      "accepted_quantity": 291,
+      "damaged_quantity": 4,
+      "rejected_quantity": 6,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_074.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 320,
+      "accepted_quantity": 370,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_075.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 271,
+      "accepted_quantity": 251,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_076.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 155,
+      "accepted_quantity": 135,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_077.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 130,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 130,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_078.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 135,
+      "accepted_quantity": 119,
+      "damaged_quantity": 7,
+      "rejected_quantity": 9,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_079.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 377,
+      "accepted_quantity": 377,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_080.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 12,
+      "accepted_quantity": -8,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_081.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 247,
+      "accepted_quantity": 227,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_082.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 247,
+      "accepted_quantity": 229,
+      "damaged_quantity": 10,
+      "rejected_quantity": 8,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_083.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 378,
+      "accepted_quantity": 358,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_084.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 91,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_085.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 258,
+      "accepted_quantity": 308,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_086.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 130,
+      "accepted_quantity": 180,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_087.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 87,
+      "accepted_quantity": 78,
+      "damaged_quantity": 3,
+      "rejected_quantity": 6,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_088.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 222,
+      "accepted_quantity": 222,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_089.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 309,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 309,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_090.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 190,
+      "accepted_quantity": 180,
+      "damaged_quantity": 4,
+      "rejected_quantity": 6,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_091.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 259,
+      "accepted_quantity": 0,
+      "damaged_quantity": 129,
+      "rejected_quantity": 130,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_092.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 352,
+      "accepted_quantity": 336,
+      "damaged_quantity": 10,
+      "rejected_quantity": 6,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_093.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 474,
+      "accepted_quantity": 474,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_094.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 453,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_095.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 182,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_096.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 393,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_097.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 30,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 30,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_098.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 74,
+      "accepted_quantity": 57,
+      "damaged_quantity": 7,
+      "rejected_quantity": 10,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_099.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 95,
+      "accepted_quantity": 145,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_100.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 169,
+      "accepted_quantity": 0,
+      "damaged_quantity": 84,
+      "rejected_quantity": 85,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_101.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 202,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 202,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_102.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 134,
+      "accepted_quantity": 0,
+      "damaged_quantity": 67,
+      "rejected_quantity": 67,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_103.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 417,
+      "accepted_quantity": 0,
+      "damaged_quantity": 208,
+      "rejected_quantity": 209,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_104.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 269,
+      "accepted_quantity": 254,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_105.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 335,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 335,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_106.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 148,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 148,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_107.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 384,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_108.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 134,
+      "accepted_quantity": 0,
+      "damaged_quantity": 67,
+      "rejected_quantity": 67,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_109.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 176,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_110.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 315,
+      "accepted_quantity": 303,
+      "damaged_quantity": 4,
+      "rejected_quantity": 8,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_111.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 294,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_112.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 123,
+      "accepted_quantity": 114,
+      "damaged_quantity": 6,
+      "rejected_quantity": 3,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_113.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 391,
+      "accepted_quantity": 378,
+      "damaged_quantity": 8,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_114.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 108,
+      "accepted_quantity": 102,
+      "damaged_quantity": 5,
+      "rejected_quantity": 1,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_115.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 151,
+      "accepted_quantity": 201,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_116.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 109,
+      "accepted_quantity": 102,
+      "damaged_quantity": 4,
+      "rejected_quantity": 3,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_117.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 150,
+      "accepted_quantity": 150,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_118.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 454,
+      "accepted_quantity": 446,
+      "damaged_quantity": 7,
+      "rejected_quantity": 1,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_119.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 36,
+      "accepted_quantity": 25,
+      "damaged_quantity": 4,
+      "rejected_quantity": 7,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_120.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 37,
+      "accepted_quantity": 17,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_121.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 137,
+      "accepted_quantity": 128,
+      "damaged_quantity": 1,
+      "rejected_quantity": 8,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_122.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 240,
+      "accepted_quantity": 240,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_123.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 301,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_124.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 145,
+      "accepted_quantity": 125,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_125.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 11,
+      "accepted_quantity": 2,
+      "damaged_quantity": 6,
+      "rejected_quantity": 3,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_126.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 154,
+      "accepted_quantity": 146,
+      "damaged_quantity": 7,
+      "rejected_quantity": 1,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_127.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 488,
+      "accepted_quantity": 468,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_128.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 475,
+      "accepted_quantity": 455,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_129.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 393,
+      "accepted_quantity": 380,
+      "damaged_quantity": 9,
+      "rejected_quantity": 4,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_130.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 492,
+      "accepted_quantity": 472,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_131.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 231,
+      "accepted_quantity": 217,
+      "damaged_quantity": 5,
+      "rejected_quantity": 9,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_132.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 450,
+      "accepted_quantity": 430,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_133.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 305,
+      "accepted_quantity": 0,
+      "damaged_quantity": 152,
+      "rejected_quantity": 153,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_134.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 152,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_135.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 250,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 250,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_136.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 92,
+      "accepted_quantity": 81,
+      "damaged_quantity": 5,
+      "rejected_quantity": 6,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_137.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 291,
+      "accepted_quantity": 0,
+      "damaged_quantity": 145,
+      "rejected_quantity": 146,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_138.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 405,
+      "accepted_quantity": 391,
+      "damaged_quantity": 6,
+      "rejected_quantity": 8,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_139.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 195,
+      "accepted_quantity": 179,
+      "damaged_quantity": 9,
+      "rejected_quantity": 7,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_140.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 77,
+      "accepted_quantity": 66,
+      "damaged_quantity": 4,
+      "rejected_quantity": 7,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_141.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 132,
+      "accepted_quantity": 112,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_142.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 125,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_143.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 376,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_144.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 134,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 134,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_145.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 460,
+      "accepted_quantity": 460,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_146.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 488,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_147.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 306,
+      "accepted_quantity": 0,
+      "damaged_quantity": 153,
+      "rejected_quantity": 153,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_148.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 400,
+      "accepted_quantity": 386,
+      "damaged_quantity": 8,
+      "rejected_quantity": 6,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_149.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 206,
+      "accepted_quantity": 197,
+      "damaged_quantity": 3,
+      "rejected_quantity": 6,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  }
+]

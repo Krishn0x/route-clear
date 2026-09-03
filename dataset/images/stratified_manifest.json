@@ -1,0 +1,158 @@
+[
+  {
+    "filename": "challan_000.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 22,
+      "accepted_quantity": 2,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_001.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 389,
+      "accepted_quantity": 380,
+      "damaged_quantity": 8,
+      "rejected_quantity": 1,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_002.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 268,
+      "accepted_quantity": 259,
+      "damaged_quantity": 9,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_003.png",
+    "scenario": "missing_sig",
+    "ground_truth": {
+      "ordered_quantity": 122,
+      "accepted_quantity": 122,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_004.png",
+    "scenario": "zero_accepted",
+    "ground_truth": {
+      "ordered_quantity": 367,
+      "accepted_quantity": 0,
+      "damaged_quantity": 183,
+      "rejected_quantity": 184,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_005.png",
+    "scenario": "full_reject",
+    "ground_truth": {
+      "ordered_quantity": 182,
+      "accepted_quantity": 0,
+      "damaged_quantity": 0,
+      "rejected_quantity": 182,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_011.png",
+    "scenario": "arithmetic_contradiction",
+    "ground_truth": {
+      "ordered_quantity": 283,
+      "accepted_quantity": 263,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_013.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 38,
+      "accepted_quantity": 88,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_014.png",
+    "scenario": "normal",
+    "ground_truth": {
+      "ordered_quantity": 477,
+      "accepted_quantity": 463,
+      "damaged_quantity": 9,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    }
+  },
+  {
+    "filename": "challan_015.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 145,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_019.png",
+    "scenario": "missing_qty",
+    "ground_truth": {
+      "ordered_quantity": 138,
+      "accepted_quantity": null,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    }
+  },
+  {
+    "filename": "challan_040.png",
+    "scenario": "excess_qty",
+    "ground_truth": {
+      "ordered_quantity": 411,
+      "accepted_quantity": 461,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": -50,
+      "expected_safety_passed": false
+    }
+  }
+]

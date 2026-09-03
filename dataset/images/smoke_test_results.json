@@ -1,0 +1,167 @@
+[
+  {
+    "filename": "challan_000.png",
+    "latency": 12.171811580657959,
+    "total_latency": 12.692898511886597,
+    "ground_truth": {
+      "ordered_quantity": 22,
+      "accepted_quantity": 2,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true,
+      "unaccounted_quantity": 5,
+      "expected_safety_passed": false
+    },
+    "extracted": {
+      "accepted_quantity": 2,
+      "damaged_quantity": 10,
+      "rejected_quantity": 5,
+      "signature_present": true
+    },
+    "confidence": {
+      "accepted_quantity": 0.99,
+      "damaged_quantity": 0.99,
+      "rejected_quantity": 0.99,
+      "signature_present": 0.98
+    },
+    "validation": {
+      "passed": false,
+      "failure_reasons": [
+        "Unaccounted quantity detected: 5 (Ordered: 22, A:2, D:10, R:5)"
+      ],
+      "unaccounted_quantity": 5
+    },
+    "decision": {
+      "transfer_id": "tr_eval_challan_000.png_ad378042",
+      "approved_release_amount": "0.00",
+      "proposed_reversal_amount": "0.00",
+      "requires_human_review": true,
+      "policy_version": "1.0",
+      "idempotency_key": "tr_eval_challan_000.png_ad378042_HUMAN_REVIEW"
+    }
+  },
+  {
+    "error": "Process request failed: timed out"
+  },
+  {
+    "filename": "challan_002.png",
+    "latency": 8.772486448287964,
+    "total_latency": 9.178122520446777,
+    "ground_truth": {
+      "ordered_quantity": 268,
+      "accepted_quantity": 259,
+      "damaged_quantity": 9,
+      "rejected_quantity": 0,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    },
+    "extracted": {
+      "accepted_quantity": 259,
+      "damaged_quantity": 9,
+      "rejected_quantity": 0,
+      "signature_present": true
+    },
+    "confidence": {
+      "accepted_quantity": 0.99,
+      "damaged_quantity": 0.99,
+      "rejected_quantity": 0.99,
+      "signature_present": 0.98
+    },
+    "validation": {
+      "passed": true,
+      "failure_reasons": [],
+      "unaccounted_quantity": 0
+    },
+    "decision": {
+      "transfer_id": "tr_eval_challan_002.png_dcd01de4",
+      "approved_release_amount": "96641.79",
+      "proposed_reversal_amount": "3358.21",
+      "requires_human_review": false,
+      "policy_version": "1.0",
+      "idempotency_key": "tr_eval_challan_002.png_dcd01de4_AUTO_SETTLEMENT"
+    }
+  },
+  {
+    "filename": "challan_003.png",
+    "latency": 12.785491466522217,
+    "total_latency": 13.160615921020508,
+    "ground_truth": {
+      "ordered_quantity": 122,
+      "accepted_quantity": 122,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": false
+    },
+    "extracted": {
+      "accepted_quantity": 122,
+      "damaged_quantity": 0,
+      "rejected_quantity": 0,
+      "signature_present": false
+    },
+    "confidence": {
+      "accepted_quantity": 0.99,
+      "damaged_quantity": 0.99,
+      "rejected_quantity": 0.99,
+      "signature_present": 0.99
+    },
+    "validation": {
+      "passed": false,
+      "failure_reasons": [
+        "Missing required signature."
+      ],
+      "unaccounted_quantity": 0
+    },
+    "decision": {
+      "transfer_id": "tr_eval_challan_003.png_d354ee62",
+      "approved_release_amount": "0.00",
+      "proposed_reversal_amount": "0.00",
+      "requires_human_review": true,
+      "policy_version": "1.0",
+      "idempotency_key": "tr_eval_challan_003.png_d354ee62_HUMAN_REVIEW"
+    }
+  },
+  {
+    "filename": "challan_004.png",
+    "latency": 14.769882440567017,
+    "total_latency": 15.14632773399353,
+    "ground_truth": {
+      "ordered_quantity": 367,
+      "accepted_quantity": 0,
+      "damaged_quantity": 183,
+      "rejected_quantity": 184,
+      "signature_present": true,
+      "unaccounted_quantity": 0,
+      "expected_safety_passed": true
+    },
+    "extracted": {
+      "accepted_quantity": 0,
+      "damaged_quantity": 183,
+      "rejected_quantity": 184,
+      "signature_present": true
+    },
+    "confidence": {
+      "accepted_quantity": 0.99,
+      "damaged_quantity": 0.99,
+      "rejected_quantity": 0.99,
+      "signature_present": 0.98
+    },
+    "validation": {
+      "passed": false,
+      "failure_reasons": [
+        "Reversal percentage 100.00% exceeds auto maximum 50.0%"
+      ],
+      "unaccounted_quantity": 0
+    },
+    "decision": {
+      "transfer_id": "tr_eval_challan_004.png_dde9dd5f",
+      "approved_release_amount": "0.00",
+      "proposed_reversal_amount": "0.00",
+      "requires_human_review": true,
+      "policy_version": "1.0",
+      "idempotency_key": "tr_eval_challan_004.png_dde9dd5f_HUMAN_REVIEW"
+    }
+  }
+]
