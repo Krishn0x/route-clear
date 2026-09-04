@@ -94,6 +94,10 @@ class SettlementDecision(Base):
 
     document = relationship("Document", back_populates="decision")
 
+    @property
+    def decision_id(self):
+        return self.id
+
 
 class AuditLog(Base):
     __tablename__ = "audit_logs"
