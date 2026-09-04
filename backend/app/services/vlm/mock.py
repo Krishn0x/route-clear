@@ -54,4 +54,28 @@ class MockVLMProvider(BaseVLMProvider):
             "raw_vlm_output": {"simulated": True, "note": "This is from MockVLMProvider"}
         }
         
+        # Deterministic demo fixtures aligned to existing synthetic dataset pitch assets
+        if ordered_quantity == 105:
+            # Matches dataset/images/challan_043.png (SAFE DEMO)
+            mock_response["extracted_fields"]["accepted_quantity"]["value"] = 95
+            mock_response["extracted_fields"]["damaged_quantity"]["value"] = 1
+            mock_response["extracted_fields"]["rejected_quantity"] = {
+                "value": 9,
+                "confidence": 0.95,
+                "evidence_region": None,
+                "evidence_note": "Fixture data",
+                "warnings": []
+            }
+        elif ordered_quantity == 145:
+            # Matches dataset/images/challan_053.png (REVIEW DEMO)
+            mock_response["extracted_fields"]["accepted_quantity"]["value"] = 125
+            mock_response["extracted_fields"]["damaged_quantity"]["value"] = 10
+            mock_response["extracted_fields"]["rejected_quantity"] = {
+                "value": 5,
+                "confidence": 0.95,
+                "evidence_region": None,
+                "evidence_note": "Fixture data",
+                "warnings": []
+            }
+        
         return FulfillmentEvidenceSchema(**mock_response)
