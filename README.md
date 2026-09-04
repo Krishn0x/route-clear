@@ -64,7 +64,7 @@ Route-Clear includes tooling to synthetically generate delivery documents (inclu
    cd evaluation
    python eval_safety_only.py
    ```
-   *This evaluates the Deterministic SafetyEngine against the ground truth dataset. Current results show 150/150 correct policy decisions with 0 false-safes and 0 false-blocks (see `evaluation/safety_eval_results.json`). Real-world Gemini VLM validation (`eval_stratified.py`) was limited to a small subset due to API quota constraints during development.*
+   *This evaluates the Deterministic SafetyEngine against the ground truth dataset. Current results show 150/150 correct policy decisions with 0 false-safes and 0 false-blocks (see `evaluation/safety_eval_results.json`). This 150/150 result measures the deterministic financial-control layer assuming correct structured extraction; it is NOT a claim of 150/150 VLM extraction accuracy. Real-world Gemini VLM batch evaluation (`eval_pipeline.py`, `eval_stratified.py`) was stopped during development because of API quota limits, so automated VLM batch result artifacts are not committed to this repository. The VLM extraction capability is demonstrated through the real Gemini provider and the controlled deterministic demo path in the pitch.*
 
 ## Project Structure
 - `backend/`: FastAPI application, SQLite models, deterministic Safety Engine, and Route Adapter.
