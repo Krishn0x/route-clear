@@ -2,24 +2,50 @@
 
 **Route-Clear** is a prototype AI-driven finance controller built for the Razorpay AI Builder Internship 2026. It securely processes messy logistics fulfillment documents (e.g., Delivery Challans) and automates Razorpay Route settlement actions while strictly confining the AI's financial authority.
 
-## Architectural Rule: The AI does not do math.
-Route-Clear enforces a strict boundary between visual extraction and financial execution:
-1. **Vision-Language Model (VLM)**: Extracts raw quantities and text from physical documents.
-2. **Deterministic Safety Engine**: Validates invariants (e.g., `accepted + damaged + rejected = ordered`) using standard Python logic.
-3. **Route Adapter**: Executes bounded Razorpay Route transfers (Partial Reversals and Releases) strictly based on the deterministic engine's decision, optionally escalating to a Human Review loop.
+## Architectural Rule: AI interprets evidence. Deterministic code decides money.
+
+Route-Clear enforces a strict boundary between visual extraction and financial execution through the following pipeline:
+
+AI Evidence
+    ↓
+VLM Pass 1
+    ↓
+Independent VLM Pass 2
+    ↓
+Deterministic Comparator
+    ↓
+Evidence Groundedness Gate
+    ↓
+SafetyEngine
+    ↓
+Human Review when uncertain
+    ↓
+Deterministic financial calculation
+    ↓
+Razorpay Route Adapter
+
+### Pipeline Principles
+- **VLM Independence:** Pass 2 independently inspects the original image without receiving output from Pass 1.
+- **Fail-Safe Conflict:** AI disagreement causes an immediate fallback to human review.
+- **Evidence Verification:** Insufficient or ungrounded evidence causes an immediate fallback to human review.
+- **No Direct Authority:** The AI never directly authorizes a financial action.
+- **Restricted Human Review:** Human reviewers submit quantities, not financial amounts.
+- **Server-Side Truth:** \ordered_quantity\ and \	otal_amount\ come from server-side transfer metadata.
+- **Deterministic Math:** The SafetyEngine performs deterministic validation and financial calculation.
+- **Safe Execution:** Route execution occurs only after SafetyEngine approval.
+- **Idempotency:** Route idempotency and state-machine behavior are preserved.
 
 ## Setup Instructions
 
 ### 1. Backend Setup
-```bash
+\\ash
 cd backend
 python -m venv venv
-source venv/bin/activate  # (or venv\Scripts\activate on Windows)
+source venv/bin/activate  # (or venv\Scriptsctivate on Windows)
 pip install -r requirements.txt
-```
-
-Create a `.env` file in the `backend/` directory:
-```env
+\
+Create a \.env\ file in the \ackend/\ directory:
+\\env
 # VLM Configuration
 # Set to 'mock' for local testing without API keys.
 # Set to 'gemini' for real extraction (requires GEMINI_API_KEY).
@@ -32,43 +58,40 @@ GEMINI_API_KEY=your_gemini_api_key_here
 ROUTE_MODE=simulated
 RAZORPAY_KEY_ID=your_key_id
 RAZORPAY_KEY_SECRET=your_key_secret
-```
-
+\
 Run the backend:
-```bash
+\\ash
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
-```
-
+\
 ### 2. Frontend Setup
-```bash
+\\ash
 cd frontend
 npm install
 npm run dev
-```
-Visit `http://localhost:5173` to access the Route-Clear Dashboard.
+\Visit \http://localhost:5173\ to access the Route-Clear Dashboard.
 
-## Running the Evaluation Pipeline
+## Evaluation
 
-Route-Clear includes tooling to synthetically generate delivery documents (including adversarial edge cases) and measure the deterministic engine's accuracy.
+The Route-Clear evaluation methodology explicitly distinguishes between:
 
-1. **Generate Dataset**:
-   ```bash
-   cd dataset/generator
-   python generate.py
-   ```
-   *Generates 150 synthetic challans with noise, rotation, and calculated ground truth.*
+1. **Deterministic SafetyEngine evaluation**
+   - Evaluated against 150 synthetic ground-truth cases (including adversarial anomalies). Results show 150/150 correct policy decisions with 0 false-safes and 0 false-blocks.
 
-2. **Run Evaluation**:
-   Ensure the backend server is running.
-   ```bash
-   cd evaluation
-   python eval_safety_only.py
-   ```
-   *This evaluates the Deterministic SafetyEngine against the ground truth dataset. Current results show 150/150 correct policy decisions with 0 false-safes and 0 false-blocks (see `evaluation/safety_eval_results.json`). This 150/150 result measures the deterministic financial-control layer assuming correct structured extraction; it is NOT a claim of 150/150 VLM extraction accuracy. Real-world Gemini VLM batch evaluation (`eval_pipeline.py`, `eval_stratified.py`) was stopped during development because of API quota limits, so automated VLM batch result artifacts are not committed to this repository. The VLM extraction capability is demonstrated through the real Gemini provider and the controlled deterministic demo path in the pitch.*
+2. **VLM mock/integration tests**
+   - The backend CI suite (62 passing tests) validates the pipeline routing, fallback paths, and API logic using deterministic mock fixtures. These tests do not measure LLM capabilities.
+
+3. **Real Gemini evaluation**
+   - Real Gemini batch evaluation was limited by API quota. Therefore, no unsupported real-world VLM accuracy percentage is claimed.
+
+## Known Limitations
+
+- A perfectly consistent VLM hallucination cannot be proven physically correct by software alone; the two-pass agreement and evidence-grounding checks reduce risk but do not establish physical truth.
+- Authentication is not yet implemented for the demo endpoints and is a production deployment limitation.
+- Uploaded image provenance is not cryptographically attested.
 
 ## Project Structure
-- `backend/`: FastAPI application, SQLite models, deterministic Safety Engine, and Route Adapter.
-- `frontend/`: React + Vite Dashboard for visualization and Manual Overrides.
-- `dataset/`: Tools to generate synthetic logistics documents.
-- `evaluation/`: The automated Evaluation Pipeline.
-- `docs/`: Threat Models and Architectural Documentation.
+- \ackend/\: FastAPI application, SQLite models, deterministic Safety Engine, and Route Adapter.
+- \rontend/\: React + Vite Dashboard for visualization and Manual Overrides.
+- \dataset/\: Tools to generate synthetic logistics documents.
+- \evaluation/\: The automated Evaluation Pipeline.
+- \docs/\: Threat Models and Architectural Documentation.

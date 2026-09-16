@@ -1,30 +1,34 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+from typing import Optional, List
 from app.schemas.document import FulfillmentEvidenceSchema
 
 class BaseVLMProvider(ABC):
     """
     Provider-independent interface for Vision-Language Models.
-    Ensures that the application is not tightly coupled to any single vendor.
+    Updated for V2 Two-Pass Architecture.
     """
 
     @abstractmethod
-    async def extract_fulfillment_evidence(
+    async def extract_pass1(
         self, 
         image_bytes: bytes, 
         mime_type: str, 
         ordered_quantity: int
     ) -> FulfillmentEvidenceSchema:
         """
-        Extracts fulfillment evidence from a scanned document/image.
+        Pass 1: Independent extraction of evidence from the original document.
+        """
+        pass
 
-        Args:
-            image_bytes: The raw bytes of the image/document.
-            mime_type: The MIME type of the document (e.g., 'image/jpeg').
-            ordered_quantity: The expected ordered quantity for context.
-
-        Returns:
-            FulfillmentEvidenceSchema containing extracted fields, confidences,
-            and bounding box evidence.
+    @abstractmethod
+    async def extract_pass2(
+        self, 
+        image_bytes: bytes, 
+        mime_type: str,
+        ordered_quantity: int
+    ) -> FulfillmentEvidenceSchema:
+        """
+        Pass 2: Independent verification of the original document.
+        Must NOT receive Pass 1 results or dynamic trigger reasons.
         """
         pass

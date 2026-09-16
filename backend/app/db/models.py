@@ -30,6 +30,7 @@ class Document(Base):
     validation = relationship("SafetyValidation", back_populates="document", uselist=False)
     decision = relationship("SettlementDecision", back_populates="document", uselist=False)
     audit_logs = relationship("AuditLog", back_populates="document", order_by="AuditLog.sequence_number")
+    verification_result = relationship("VerificationResult", back_populates="document", uselist=False)
     
     @property
     def policy_math(self):
@@ -128,3 +129,43 @@ class RouteAction(Base):
     error = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     executed_at = Column(DateTime, nullable=True)
+
+
+class VerificationResult(Base):
+    """
+    Stores the two-pass AI evidence verification state for a document.
+
+    Pass 1 extracts evidence independently.  Pass 2 independently re-examines
+    the SAME original image without seeing Pass 1 results.  The comparison
+    and resolution are deterministic — no AI involvement.
+
+    Agreement between the two passes raises evidence confidence but does NOT
+    constitute mathematical proof of extraction accuracy.  The SafetyEngine's
+    arithmetic invariant and policy limits remain the authoritative financial
+    controls.
+    """
+    __tablename__ = "verification_results"
+
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    document_id = Column(String, ForeignKey("documents.id"), unique=True)
+
+    # Raw JSON outputs from each pass
+    pass1_raw = Column(JSON, nullable=True)
+    pass2_raw = Column(JSON, nullable=True)
+
+    # Whether Pass 2 was triggered and why
+    pass2_triggered = Column(Boolean, default=True)   # V2 default: always true
+    pass2_trigger_reasons = Column(JSON, default=list)  # list[str] of reason codes
+
+    # Deterministic comparison output
+    comparison_result = Column(JSON, nullable=True)   # ComparisonResult as dict
+    resolution_result = Column(JSON, nullable=True)   # ResolutionResult as dict
+
+    # Evidence sufficiency gate decision
+    evidence_sufficient = Column(Boolean, nullable=True)
+    sufficiency_failures = Column(JSON, default=list)  # list[str] of failed checks
+
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    document = relationship("Document", back_populates="verification_result")
+

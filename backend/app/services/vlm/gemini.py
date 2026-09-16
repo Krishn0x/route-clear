@@ -1,9 +1,9 @@
 import json
 import logging
-from typing import Optional
+from typing import Optional, List
 from app.schemas.document import FulfillmentEvidenceSchema
 from app.services.vlm.base import BaseVLMProvider
-from app.services.vlm.prompt import EXTRACTION_PROMPT
+from app.services.vlm.prompt import PASS1_PROMPT, PASS2_PROMPT
 from app.core.config import settings
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
@@ -26,9 +26,7 @@ class GeminiVLMProvider(BaseVLMProvider):
         self.model_name = settings.GEMINI_MODEL
         self.executor = ThreadPoolExecutor(max_workers=5)
 
-    def _sync_extract(self, image_bytes: bytes, mime_type: str, ordered_quantity: int) -> FulfillmentEvidenceSchema:
-        prompt = EXTRACTION_PROMPT.format(ordered_quantity=ordered_quantity)
-        
+    def _sync_extract(self, prompt: str, image_bytes: bytes, mime_type: str) -> FulfillmentEvidenceSchema:
         try:
             from google import genai
             # Prepare image part
@@ -37,9 +35,15 @@ class GeminiVLMProvider(BaseVLMProvider):
                 mime_type=mime_type
             )
             
+            # The schema_template is expected in the prompt. We provide a dummy one to avoid format error,
+            # but ideally it would be generated using Pydantic. For this prototype, we'll just insert a generic template.
+            # (Note: In a robust setup, you'd pass a JSON schema string here).
+            schema_template = "{}"
+            formatted_prompt = prompt.replace("{schema_template}", schema_template)
+            
             response = self.client.models.generate_content(
                 model=self.model_name,
-                contents=[prompt, image_part],
+                contents=[formatted_prompt, image_part],
                 config=genai.types.GenerateContentConfig(
                     response_mime_type="application/json"
                 )
@@ -66,17 +70,34 @@ class GeminiVLMProvider(BaseVLMProvider):
             logger.error(f"Gemini API Error: {str(e)}")
             raise VLMException(f"VLM Provider Failure: {str(e)}")
 
-    async def extract_fulfillment_evidence(
+    async def extract_pass1(
         self, 
         image_bytes: bytes, 
         mime_type: str, 
         ordered_quantity: int
     ) -> FulfillmentEvidenceSchema:
         loop = asyncio.get_event_loop()
+        prompt = PASS1_PROMPT.replace("{ordered_quantity}", str(ordered_quantity))
         return await loop.run_in_executor(
             self.executor, 
-            self._sync_extract, 
+            self._sync_extract,
+            prompt,
             image_bytes, 
-            mime_type, 
-            ordered_quantity
+            mime_type
+        )
+
+    async def extract_pass2(
+        self, 
+        image_bytes: bytes, 
+        mime_type: str,
+        ordered_quantity: int
+    ) -> FulfillmentEvidenceSchema:
+        loop = asyncio.get_event_loop()
+        prompt = PASS2_PROMPT.replace("{ordered_quantity}", str(ordered_quantity))
+        return await loop.run_in_executor(
+            self.executor, 
+            self._sync_extract,
+            prompt,
+            image_bytes, 
+            mime_type
         )

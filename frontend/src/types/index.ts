@@ -10,6 +10,7 @@ export interface FieldEvidence<T> {
   confidence: number;
   evidence_note?: string;
   evidence_region?: Box2D;
+  warnings?: string[];
 }
 
 export interface FulfillmentFields {
@@ -42,6 +43,55 @@ export interface SettlementDecisionSchema {
   idempotency_key: string;
 }
 
+// ── V2 types ──────────────────────────────────────────────────────────────────
+
+export interface TransferRecord {
+  transfer_id: string;
+  total_amount: number;
+  ordered_quantity: number;
+  vendor_name: string;
+  item_description: string;
+}
+
+export interface FieldAgreement {
+  field: string;
+  pass1_value?: number | boolean | null;
+  pass2_value?: number | boolean | null;
+  pass1_confidence: number;
+  pass2_confidence: number;
+  agreed: boolean;
+  delta?: number | null;
+}
+
+export interface ComparisonResult {
+  all_fields_agreed: boolean;
+  disagreements: FieldAgreement[];
+  agreements: FieldAgreement[];
+  max_numeric_delta?: number | null;
+  comparison_triggered_by: string[];
+}
+
+export interface ResolutionResult {
+  resolved_accepted?: number | null;
+  resolved_damaged?: number | null;
+  resolved_rejected?: number | null;
+  resolved_signature?: boolean | null;
+  resolution_method: string;
+  requires_human_review: boolean;
+  human_review_reason?: string | null;
+}
+
+export interface VerificationResultSchema {
+  pass2_triggered: boolean;
+  pass2_trigger_reasons: string[];
+  comparison_result?: ComparisonResult | null;
+  resolution_result?: ResolutionResult | null;
+  evidence_sufficient?: boolean | null;
+  sufficiency_failures: string[];
+}
+
+// ── Document response ─────────────────────────────────────────────────────────
+
 export interface DocumentResponse {
   id: string;
   filename: string;
@@ -57,4 +107,6 @@ export interface DocumentResponse {
     reversal_percentage: number;
     maximum_auto_reversal_percentage: number;
   };
+  // V2 field
+  verification?: VerificationResultSchema | null;
 }
