@@ -327,3 +327,19 @@ async def test_correction_status_gates(correction_val, expects_review, expected_
         assert res.requires_human_review is expects_review
         if expected_reason:
             assert expected_reason in res.human_review_reason
+
+def test_schema_has_no_additional_properties():
+    from app.services.vlm.gemini import ExpectedVLMOutput
+    schema = ExpectedVLMOutput.model_json_schema()
+    
+    def check_no_additional_properties(obj, path=""):
+        if isinstance(obj, dict):
+            if "additionalProperties" in obj:
+                raise ValueError(f"Found additionalProperties at {path}")
+            for k, v in obj.items():
+                check_no_additional_properties(v, f"{path}.{k}" if path else k)
+        elif isinstance(obj, list):
+            for i, item in enumerate(obj):
+                check_no_additional_properties(item, f"{path}[{i}]")
+                
+    check_no_additional_properties(schema)

@@ -7,10 +7,16 @@ from app.db.models import DocumentStatus
 
 T = TypeVar('T')
 
+class BoundingBox(BaseModel):
+    x: float
+    y: float
+    w: float
+    h: float
+
 class FieldEvidence(BaseModel, Generic[T]):
     value: T
     confidence: float
-    evidence_region: Optional[Dict[str, float]] = None # Expected to have x, y, w, h
+    evidence_region: Optional[BoundingBox] = None
     evidence_note: Optional[str] = None
     warnings: List[str] = []
 
