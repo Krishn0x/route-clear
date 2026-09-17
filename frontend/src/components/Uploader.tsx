@@ -8,27 +8,23 @@ interface Props {
   onUploadComplete: (doc: DocumentResponse) => void;
 }
 
-const DEMO_TRANSFER_IDS = [
-  { id: 'TRF_DEMO_SAFE',     label: 'SAFE demo  (challan_043)' },
-  { id: 'TRF_DEMO_REVIEW',   label: 'UNACCOUNTED demo  (challan_053)' },
-  { id: 'TRF_DEMO_CONFLICT', label: 'CONFLICT demo  (simulated)' },
-];
-
 export default function Uploader({ onUploadComplete }: Props) {
+  const [file, setFile] = useState<File | null>(null);
+  const [transferId, setTransferId] = useState('TRF_DEMO_SAFE');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const [transferId, setTransferId] = useState('TRF_DEMO_SAFE');
-  const [transfer, setTransfer] = useState<TransferRecord | null>(null);
-  const [transferError, setTransferError] = useState<string | null>(null);
+  
   const [transferLoading, setTransferLoading] = useState(false);
+  const [transferError, setTransferError] = useState<string | null>(null);
+  const [transferRecord, setTransferRecord] = useState<TransferRecord | null>(null);
 
-  // Look up transfer metadata whenever the transfer ID changes
   useEffect(() => {
     if (!transferId.trim()) {
-      setTransfer(null);
+      setTransferRecord(null);
+      setTransferError(null);
       return;
     }
+
     const controller = new AbortController();
     setTransferLoading(true);
     setTransferError(null);
@@ -37,33 +33,34 @@ export default function Uploader({ onUploadComplete }: Props) {
       signal: controller.signal,
     })
       .then(res => {
-        setTransfer(res.data);
+        setTransferRecord(res.data);
         setTransferError(null);
       })
       .catch(err => {
         if (axios.isCancel(err)) return;
-        setTransfer(null);
-        setTransferError(err.response?.data?.detail || 'Transfer not found');
+        setTransferRecord(null);
+        if (err.response?.status === 404) {
+          setTransferError("Transfer not found.");
+        } else if (err.response?.status === 401) {
+          setTransferError("Unauthorized. Check DEMO_ACCESS_TOKEN.");
+        } else {
+          setTransferError("Failed to fetch transfer.");
+        }
       })
-      .finally(() => setTransferLoading(false));
+      .finally(() => {
+        setTransferLoading(false);
+      });
 
     return () => controller.abort();
   }, [transferId]);
 
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (!transfer) {
-      setError('Please enter a valid Transfer ID before uploading.');
-      return;
-    }
+  const handleUpload = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!file || !transferId) return;
 
     setLoading(true);
     setError(null);
 
-    // V2: only transfer_id and file are sent — financial fields come from the
-    // server-side transfer registry, never from user input.
     const formData = new FormData();
     formData.append('file', file);
     formData.append('transfer_id', transferId.trim());
@@ -74,123 +71,105 @@ export default function Uploader({ onUploadComplete }: Props) {
       });
       onUploadComplete(res.data);
     } catch (err: any) {
+      console.error(err);
       setError(err.response?.data?.detail || 'Upload failed');
     } finally {
       setLoading(false);
-      // Reset the file input so the same file can be re-uploaded after a DB reset
-      e.target.value = '';
     }
   };
 
   return (
-    <div className="bg-white shadow rounded-lg p-6">
-
-      {/* Transfer ID selector */}
-      <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Transfer ID
-          <span className="ml-2 text-xs text-gray-400 font-normal">
-            (ordered quantity and amount are loaded from server records)
-          </span>
-        </label>
-
-        {/* Quick demo selector */}
-        <div className="flex flex-wrap gap-2 mb-2">
-          {DEMO_TRANSFER_IDS.map(({ id, label }) => (
-            <button
-              key={id}
-              onClick={() => setTransferId(id)}
-              className={`text-xs px-3 py-1 rounded-full border transition ${
-                transferId === id
-                  ? 'bg-indigo-600 text-white border-indigo-600'
-                  : 'bg-white text-gray-600 border-gray-300 hover:border-indigo-400'
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-
-        <input
-          type="text"
-          value={transferId}
-          onChange={e => setTransferId(e.target.value)}
-          placeholder="TRF_DEMO_SAFE"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2 border"
-        />
+    <div className="bg-bg-surface border border-border-default rounded-md shadow-sm p-6 w-full font-mono">
+      <div className="flex items-center mb-6">
+        <Upload className="w-5 h-5 text-accent mr-3" />
+        <h2 className="text-lg font-bold text-text-primary tracking-tight uppercase">Upload Challan</h2>
       </div>
 
-      {/* Transfer metadata preview */}
-      {transferLoading && (
-        <div className="mb-4 flex items-center text-sm text-gray-500">
-          <Loader2 className="w-4 h-4 mr-2 animate-spin" /> Looking up transfer…
-        </div>
-      )}
-
-      {transferError && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded flex items-start text-sm text-red-700">
-          <AlertCircle className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5" />
-          {transferError}
-        </div>
-      )}
-
-      {transfer && !transferLoading && (
-        <div className="mb-6 p-3 bg-green-50 border border-green-200 rounded text-sm">
-          <div className="flex items-center mb-2 text-green-800 font-medium">
-            <CheckCircle2 className="w-4 h-4 mr-2" /> Transfer found — metadata loaded from server
+      <form onSubmit={handleUpload} className="space-y-6">
+        
+        <div className="space-y-2">
+          <label className="block text-xs font-semibold text-text-secondary uppercase tracking-widest">
+            Transfer ID Binding
+          </label>
+          <div className="relative">
+            <input
+              type="text"
+              value={transferId}
+              onChange={(e) => setTransferId(e.target.value)}
+              className="w-full bg-bg-base border border-border-default rounded p-2.5 text-sm text-text-primary focus:outline-none focus:border-accent font-mono"
+              placeholder="e.g. TRF_DEMO_SAFE"
+              required
+            />
           </div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-gray-700">
-            <div><span className="text-gray-500">Vendor:</span> {transfer.vendor_name}</div>
-            <div><span className="text-gray-500">Item:</span> {transfer.item_description}</div>
-            <div><span className="text-gray-500">Ordered qty:</span> <span className="font-mono font-semibold">{transfer.ordered_quantity}</span></div>
-            <div><span className="text-gray-500">Total amount:</span> <span className="font-mono font-semibold">₹{Number(transfer.total_amount).toLocaleString('en-IN')}</span></div>
-          </div>
-        </div>
-      )}
-
-      {/* Upload area */}
-      <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:bg-gray-50 transition">
-        {loading ? (
-          <div className="flex flex-col items-center">
-            <Loader2 className="h-10 w-10 text-indigo-500 animate-spin mb-4" />
-            <p className="text-gray-600">Uploading document…</p>
-          </div>
-        ) : (
-          <div>
-            <Upload className="mx-auto h-12 w-12 text-gray-400" />
-            <div className="mt-4 flex text-sm text-gray-600 justify-center">
-              <label
-                htmlFor="file-upload"
-                className={`relative cursor-pointer bg-white rounded-md font-medium ${
-                  transfer
-                    ? 'text-indigo-600 hover:text-indigo-500'
-                    : 'text-gray-400 cursor-not-allowed'
-                } focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500`}
-              >
-                <span>Upload a delivery challan</span>
-                <input
-                  id="file-upload"
-                  name="file-upload"
-                  type="file"
-                  className="sr-only"
-                  onChange={handleUpload}
-                  accept="image/*"
-                  disabled={!transfer}
-                />
-              </label>
-            </div>
-            <p className="text-xs text-gray-500 mt-2">JPEG, PNG up to 5 MB</p>
-            {!transfer && !transferLoading && (
-              <p className="text-xs text-orange-500 mt-1">Select a valid Transfer ID above to enable upload.</p>
+          
+          <div className="min-h-[60px] p-3 rounded bg-bg-base border border-border-default text-xs">
+            {transferLoading && (
+              <div className="flex items-center text-text-secondary">
+                <Loader2 className="w-3 h-3 animate-spin mr-2" /> Validating transfer...
+              </div>
+            )}
+            {!transferLoading && transferError && (
+              <div className="flex items-center text-status-failed">
+                <AlertCircle className="w-3 h-3 mr-2" /> {transferError}
+              </div>
+            )}
+            {!transferLoading && transferRecord && (
+              <div className="space-y-1 text-text-secondary">
+                <div className="flex items-center text-status-safe font-semibold mb-2">
+                  <CheckCircle2 className="w-3 h-3 mr-2" /> Valid Transfer Found
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div>Vendor: <span className="text-text-primary font-bold">{transferRecord.vendor_name}</span></div>
+                  <div>Item: <span className="text-text-primary font-bold">{transferRecord.item_description}</span></div>
+                  <div>Quantity: <span className="text-text-primary font-bold">{transferRecord.ordered_quantity} units</span></div>
+                  <div>Amount: <span className="text-text-primary font-bold">₹{transferRecord.total_amount}</span></div>
+                </div>
+              </div>
+            )}
+            {!transferLoading && !transferError && !transferRecord && transferId.trim() && (
+              <div className="text-text-secondary italic">Waiting for input...</div>
             )}
           </div>
-        )}
+        </div>
+
+        <div className="space-y-2">
+          <label className="block text-xs font-semibold text-text-secondary uppercase tracking-widest">
+            Evidence Image
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setFile(e.target.files?.[0] || null)}
+            className="w-full text-sm text-text-secondary file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-bg-elevated file:text-text-primary file:font-semibold hover:file:bg-border-default file:cursor-pointer cursor-pointer border border-border-default rounded p-2 bg-bg-base"
+            required
+          />
+        </div>
+
         {error && (
-          <p className="mt-4 text-red-600 text-sm flex items-center justify-center">
-            <AlertCircle className="w-4 h-4 mr-1" /> {error}
-          </p>
+          <div className="p-3 bg-status-failed/10 border border-status-failed/30 rounded text-status-failed text-xs flex items-start">
+            <AlertCircle className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
+            <div>
+              <div className="font-bold uppercase tracking-wider mb-1">UPLOAD REJECTED</div>
+              <div>{error}</div>
+            </div>
+          </div>
         )}
-      </div>
+
+        <button
+          type="submit"
+          disabled={loading || !file || !transferRecord}
+          className="w-full flex items-center justify-center p-3 rounded font-bold text-sm bg-accent text-white hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors tracking-wider uppercase"
+        >
+          {loading ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin mr-2" />
+              Uploading...
+            </>
+          ) : (
+            'Process Evidence'
+          )}
+        </button>
+      </form>
     </div>
   );
 }

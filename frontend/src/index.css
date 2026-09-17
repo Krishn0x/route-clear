@@ -3,7 +3,22 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-base: #0d0f14;
+    --bg-surface: #141720;
+    --bg-elevated: #1b1f2d;
+    --border: #252a3a;
+    --accent: #4f6ef7;
+    --status-safe: #3dba7b;
+    --status-review: #e8943a;
+    --status-failed: #e05252;
+    --text-primary: #e8ecf4;
+    --text-secondary: #8b92a8;
+  }
+  
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply antialiased font-sans;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
   }
 }

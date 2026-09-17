@@ -9,28 +9,22 @@ export default function DocumentViewer({ doc }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
-  // We don't have an endpoint to serve the raw image in FastAPI right now easily, 
-  // but wait! The API doesn't have a GET /documents/{id}/image endpoint.
-  // We need to add one, or use a dummy image for now.
-  // Actually, I can just write the backend route for it quickly.
+  // Still using the API image fetcher since we just have the ID
   const imageUrl = `/api/documents/${doc.id}/image`;
 
-  const drawBoxes = () => {
-    // We would draw boxes here over the image based on evidence_region
-  };
-
   return (
-    <div className="bg-white shadow rounded-lg p-4 h-full relative" ref={containerRef}>
-      <h3 className="text-lg font-medium text-gray-900 mb-4">Original Document</h3>
-      <div className="relative border bg-gray-100 rounded overflow-hidden" style={{ minHeight: '400px' }}>
+    <div className="bg-bg-surface border border-border-default rounded-md p-4 h-full relative flex flex-col" ref={containerRef}>
+      <h3 className="text-sm font-bold text-text-primary mb-3 uppercase tracking-widest font-mono flex items-center justify-between">
+        <span>Original Document</span>
+        <span className="text-text-secondary text-[10px]">{doc.id}</span>
+      </h3>
+      <div className="relative border border-border-default bg-bg-base rounded overflow-hidden flex-1 flex items-center justify-center p-2">
         <img 
           ref={imgRef}
           src={imageUrl} 
-          alt="Document" 
-          className="w-full h-auto object-contain"
-          onLoad={drawBoxes}
+          alt="Document Evidence" 
+          className="max-w-full max-h-full object-contain"
         />
-        {/* Draw bounding boxes here */}
       </div>
     </div>
   );

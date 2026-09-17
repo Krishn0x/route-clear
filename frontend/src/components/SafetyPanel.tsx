@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { apiClient } from '../apiClient';
 import { DocumentResponse } from '../types';
-import { CheckCircle, AlertTriangle, Play } from 'lucide-react';
+import { ShieldCheck, ShieldAlert, Cpu, Activity, User, Hash } from 'lucide-react';
 
 interface Props {
   doc: DocumentResponse;
@@ -11,10 +11,13 @@ interface Props {
 export default function SafetyPanel({ doc, onUpdate }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [releaseAmt, setReleaseAmt] = useState('');
-  const [reversalAmt, setReversalAmt] = useState('');
 
-  const processDoc = async () => {
+  // Form states strictly for quantity (Backend rules!)
+  const [acceptedQty, setAcceptedQty] = useState<string>('');
+  const [damagedQty, setDamagedQty] = useState<string>('');
+  const [rejectedQty, setRejectedQty] = useState<string>('');
+
+  const submitProcess = async () => {
     setLoading(true);
     setError(null);
     try {
@@ -22,15 +25,7 @@ export default function SafetyPanel({ doc, onUpdate }: Props) {
       onUpdate(res.data);
     } catch (err: any) {
       console.error(err);
-      if (err.response?.status === 429) {
-        setError("Document processing is temporarily unavailable because the AI provider quota has been reached. No financial action was executed.");
-      } else if (err.message === 'Network Error' || err.code === 'ECONNABORTED') {
-        setError("Unable to reach the processing service. No financial action was executed.");
-      } else if (err.response?.data?.detail) {
-        setError(err.response.data.detail);
-      } else {
-        setError("Document processing failed. No financial action was executed.");
-      }
+      setError(err.response?.data?.detail || 'Processing failed');
     } finally {
       setLoading(false);
     }
@@ -40,196 +35,251 @@ export default function SafetyPanel({ doc, onUpdate }: Props) {
     setLoading(true);
     setError(null);
     try {
-      await apiClient.post(`/api/documents/${doc.id}/human-review`, null, {
-        params: {
-          approved_release_amount: releaseAmt,
-          proposed_reversal_amount: reversalAmt
-        }
+      await apiClient.post(`/api/documents/${doc.id}/human-review`, {
+        accepted_quantity: parseInt(acceptedQty) || 0,
+        damaged_quantity: parseInt(damagedQty) || 0,
+        rejected_quantity: parseInt(rejectedQty) || 0
       });
       // Fetch updated
       const res = await apiClient.get(`/api/documents/${doc.id}`);
       onUpdate(res.data);
     } catch (err: any) {
       console.error(err);
-      if (err.response?.data?.detail) {
-        setError(err.response.data.detail);
-      } else {
-        setError("Validation failed. No financial action was executed.");
-      }
+      setError(err.response?.data?.detail || 'Review failed');
     } finally {
       setLoading(false);
     }
   };
 
-  return (
-    <div className="bg-white shadow rounded-lg p-4 h-full flex flex-col">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-medium text-gray-900">Safety & Settlement</h3>
-        <span className={`px-2 py-1 rounded text-xs font-semibold ${
-          doc.status === 'COMPLETED' ? 'bg-green-100 text-green-800' :
-          doc.status === 'FAILED' ? 'bg-red-100 text-red-800' :
-          doc.status === 'HUMAN_REVIEW' ? 'bg-yellow-100 text-yellow-800' :
-          'bg-gray-100 text-gray-800'
-        }`}>
-          {doc.status}
-        </span>
-      </div>
-
-      {error && (
-        <div className="mb-4 p-3 bg-red-100 border border-red-300 rounded text-sm text-red-800 flex items-start">
-          <AlertTriangle className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" />
-          <span>{error}</span>
-        </div>
-      )}
-
-      {doc.status === 'PENDING' && (
-        <div className="mt-4 flex-1 flex flex-col items-center justify-center border-2 border-dashed rounded p-4">
-          <p className="text-sm text-gray-500 text-center mb-4">Document uploaded. Ready for AI Extraction and Safety Validation.</p>
-          <button
-            onClick={processDoc}
-            disabled={loading}
-            className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50"
-          >
-            <Play className="w-4 h-4 mr-2" />
-            {loading ? 'Processing...' : 'Run Process'}
+  const renderStatusBanner = () => {
+    if (doc.status === 'PENDING') {
+      return (
+        <div className="bg-bg-elevated border border-border-default rounded p-4 mb-4 flex justify-between items-center">
+          <div>
+            <div className="font-mono text-sm text-text-primary tracking-widest font-bold uppercase">Evidence Received</div>
+            <div className="text-xs text-text-secondary mt-1">Awaiting verification pipeline execution.</div>
+          </div>
+          <button onClick={submitProcess} disabled={loading} className="bg-accent text-white px-4 py-2 text-xs font-bold uppercase tracking-wider rounded hover:bg-accent/90 disabled:opacity-50">
+            {loading ? 'Executing...' : 'Execute Pipeline'}
           </button>
         </div>
-      )}
+      );
+    }
 
-      {doc.evidence && (
-        <div className="space-y-4 flex-1 overflow-y-auto">
-          <div className="bg-gray-50 p-3 rounded">
-            <h4 className="text-sm font-semibold text-gray-700 mb-2">VLM Extraction</h4>
-            <div className="grid grid-cols-2 gap-2 text-sm">
-              <div>Ordered: <span className="font-mono">{doc.ordered_quantity}</span></div>
-              <div>Accepted: {doc.evidence.extracted_fields.accepted_quantity?.value == null ? <span className="text-red-500 italic">Missing / unreadable</span> : <span className="font-mono">{doc.evidence.extracted_fields.accepted_quantity.value}</span>}</div>
-              <div>Damaged: {doc.evidence.extracted_fields.damaged_quantity?.value == null ? <span className="text-red-500 italic">Missing / unreadable</span> : <span className="font-mono">{doc.evidence.extracted_fields.damaged_quantity.value}</span>}</div>
-              <div>Rejected: {doc.evidence.extracted_fields.rejected_quantity?.value == null ? <span className="text-red-500 italic">Missing / unreadable</span> : <span className="font-mono">{doc.evidence.extracted_fields.rejected_quantity.value}</span>}</div>
+    if (doc.status === 'COMPLETED' || doc.status === 'PROCESSED') {
+      const passed = doc.validation?.passed;
+      if (passed) {
+        return (
+          <div className="bg-status-safe/10 border border-status-safe/30 rounded p-4 mb-4">
+            <div className="flex items-center text-status-safe font-bold font-mono tracking-widest text-lg mb-1">
+              <ShieldCheck className="w-5 h-5 mr-2" /> ROUTE CLEARED
+            </div>
+            <div className="text-status-safe/80 text-xs font-mono">
+              Deterministic safety checks passed. Route action executed.
             </div>
           </div>
+        );
+      }
+    }
 
-          {doc.validation && (
-            <div className={`p-3 rounded border ${doc.validation.passed ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}>
-              <h4 className="text-sm font-semibold flex items-center mb-2">
-                {doc.validation.passed ? <CheckCircle className="w-4 h-4 text-green-600 mr-1" /> : <AlertTriangle className="w-4 h-4 text-red-600 mr-1" />}
-                Deterministic Safety Engine
-              </h4>
-              <div className="text-xs text-gray-700 space-y-1">
-                {doc.decision && (
-                  <>
-                    <div>Reversal: <span className="font-mono">₹{doc.decision.proposed_reversal_amount}</span></div>
-                    {doc.policy_math && (
-                      <>
-                        <div>Reversal percentage: <span className="font-mono">{doc.policy_math.reversal_percentage.toFixed(2)}%</span></div>
-                        <div>Automatic reversal limit: <span className="font-mono">{doc.policy_math.maximum_auto_reversal_percentage.toFixed(2)}%</span></div>
-                      </>
-                    )}
-                  </>
-                )}
-                
-                <div>Quantity reconciliation: 
-                  <span className="font-mono ml-1">
-                    {doc.ordered_quantity} − ({doc.evidence.extracted_fields.accepted_quantity?.value ?? 0} + {doc.evidence.extracted_fields.damaged_quantity?.value ?? 0} + {doc.evidence.extracted_fields.rejected_quantity?.value ?? 0}) = {doc.validation.unaccounted_quantity}
-                  </span>
-                  {doc.validation.unaccounted_quantity === 0 ? " ✓" : " ✗"}
+    if (doc.status === 'HUMAN_REVIEW') {
+      return (
+        <div className="bg-status-review/10 border border-status-review/30 rounded p-4 mb-4">
+          <div className="flex items-center text-status-review font-bold font-mono tracking-widest text-lg mb-1">
+            <User className="w-5 h-5 mr-2" /> HUMAN REVIEW REQUIRED
+          </div>
+          <div className="text-status-review/80 text-xs font-mono mt-2 space-y-1">
+            {doc.validation?.failure_reasons.map((r, i) => (
+              <div key={i}>• {r}</div>
+            ))}
+            {doc.verification?.sufficiency_failures.map((r, i) => (
+              <div key={i}>• {r}</div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (doc.status === 'FAILED') {
+      return (
+        <div className="bg-status-failed/10 border border-status-failed/30 rounded p-4 mb-4">
+          <div className="flex items-center text-status-failed font-bold font-mono tracking-widest text-lg mb-1">
+            <ShieldAlert className="w-5 h-5 mr-2" /> SAFETY BLOCKED
+          </div>
+          <div className="text-status-failed/80 text-xs font-mono mt-1">
+            Pipeline aborted due to critical error.
+          </div>
+        </div>
+      );
+    }
+  };
+
+  return (
+    <div className="bg-bg-surface border border-border-default rounded-md h-full flex flex-col overflow-hidden font-mono text-sm">
+      <div className="p-4 border-b border-border-default bg-bg-elevated flex justify-between items-center">
+        <h3 className="font-bold text-text-primary uppercase tracking-widest">Pipeline Console</h3>
+        <span className="text-xs text-text-secondary">Trf: <span className="text-text-primary">{doc.transfer_id}</span></span>
+      </div>
+
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {error && (
+          <div className="p-3 bg-status-failed/10 border border-status-failed/30 text-status-failed text-xs rounded mb-4">
+            {error}
+          </div>
+        )}
+
+        {renderStatusBanner()}
+
+        {doc.verification && (
+          <div className="border border-border-default rounded bg-bg-base overflow-hidden">
+            <div className="bg-bg-elevated p-2 text-xs font-bold border-b border-border-default flex items-center text-text-secondary tracking-widest">
+              <Cpu className="w-4 h-4 mr-2" /> VLM Evidence Extraction
+            </div>
+            
+            <div className="p-3 space-y-4 text-xs">
+              {/* Comparison Results */}
+              {doc.verification.comparison_result && (
+                <div>
+                  <div className="text-[10px] text-text-secondary uppercase mb-2">Dual-Pass Comparator (Deterministic)</div>
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="border-b border-border-default text-text-secondary">
+                        <th className="pb-1 font-normal">Field</th>
+                        <th className="pb-1 font-normal">AI Pass 1</th>
+                        <th className="pb-1 font-normal">AI Pass 2</th>
+                        <th className="pb-1 font-normal">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[...doc.verification.comparison_result.agreements, ...doc.verification.comparison_result.disagreements].map((row, idx) => (
+                        <tr key={idx} className="border-b border-border-default/50 last:border-0">
+                          <td className="py-2 text-text-secondary capitalize">{row.field.replace('_', ' ')}</td>
+                          <td className="py-2 text-text-primary">{String(row.pass1_value ?? 'N/A')} <span className="text-[9px] text-text-secondary ml-1">({(row.pass1_confidence*100).toFixed(0)}%)</span></td>
+                          <td className="py-2 text-text-primary">{String(row.pass2_value ?? 'N/A')} <span className="text-[9px] text-text-secondary ml-1">({(row.pass2_confidence*100).toFixed(0)}%)</span></td>
+                          <td className="py-2">
+                            {row.agreed ? (
+                              <span className="text-status-safe font-bold">MATCH</span>
+                            ) : (
+                              <span className="text-status-failed font-bold">CONFLICT</span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
-                
-                <div>Signature status: <span className="font-mono">{doc.evidence.extracted_fields.signature_present?.value ? 'Present ✓' : 'Missing ✗'}</span></div>
-                
-                <div className="mt-2 pt-2 border-t font-bold">
-                  Decision: {doc.validation.passed ? "SAFE FOR AUTOMATIC PROCESSING" : "HUMAN REVIEW REQUIRED"}
-                </div>
-                
-                {!doc.validation.passed && (
-                  <div className="mt-2">
-                    <span className="font-bold text-red-800">Reason:</span>
-                    <ul className="list-disc list-inside text-red-700">
-                      {doc.validation.failure_reasons.map((r, i) => <li key={i}>{r}</li>)}
-                    </ul>
-                  </div>
-                )}
+              )}
+            </div>
+          </div>
+        )}
+
+        {doc.validation && (
+          <div className="border border-border-default rounded bg-bg-base overflow-hidden">
+             <div className="bg-bg-elevated p-2 text-xs font-bold border-b border-border-default flex items-center text-text-secondary tracking-widest">
+              <Activity className="w-4 h-4 mr-2" /> Deterministic Safety Engine
+            </div>
+            <div className="p-3 text-xs space-y-2">
+              <div className="flex justify-between items-center border-b border-border-default/50 pb-2">
+                <span className="text-text-secondary">Quantity Reconciliation</span>
+                <span className="text-text-primary">
+                  {doc.ordered_quantity} = ({doc.evidence?.extracted_fields.accepted_quantity?.value ?? 0} + {doc.evidence?.extracted_fields.damaged_quantity?.value ?? 0} + {doc.evidence?.extracted_fields.rejected_quantity?.value ?? 0})
+                </span>
+              </div>
+              <div className="flex justify-between items-center border-b border-border-default/50 pb-2">
+                <span className="text-text-secondary">Unaccounted Quantity</span>
+                <span className={doc.validation.unaccounted_quantity === 0 ? "text-status-safe font-bold" : "text-status-failed font-bold"}>
+                  {doc.validation.unaccounted_quantity}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-text-secondary">Signature Verification</span>
+                <span className={doc.evidence?.extracted_fields.signature_present?.value ? "text-status-safe font-bold" : "text-status-failed font-bold"}>
+                  {doc.evidence?.extracted_fields.signature_present?.value ? "PRESENT" : "MISSING"}
+                </span>
               </div>
             </div>
-          )}
+          </div>
+        )}
 
-          {doc.decision && (
-            <div className="bg-gray-50 p-3 rounded">
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">Settlement Decision</h4>
-              <div className="text-sm space-y-1">
-                <div>Release Amount: ₹{doc.decision.approved_release_amount}</div>
-                <div>Reversal Amount: ₹{doc.decision.proposed_reversal_amount}</div>
+        {doc.decision && (
+           <div className="border border-border-default rounded bg-bg-base overflow-hidden">
+             <div className="bg-bg-elevated p-2 text-xs font-bold border-b border-border-default flex items-center text-text-secondary tracking-widest">
+              <ShieldCheck className="w-4 h-4 mr-2" /> Settlement Decision Math
+            </div>
+            <div className="p-3 text-xs space-y-2">
+               <div className="flex justify-between">
+                <span className="text-text-secondary">Proposed Reversal</span>
+                <span className="text-status-failed">₹{doc.decision.proposed_reversal_amount.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-text-secondary">Approved Release</span>
+                <span className="text-status-safe">₹{doc.decision.approved_release_amount.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {doc.status === 'HUMAN_REVIEW' && (
+          <div className="border border-status-review rounded bg-bg-base overflow-hidden mt-4">
+             <div className="bg-status-review/10 p-3 text-xs font-bold border-b border-status-review/30 flex items-center text-status-review tracking-widest">
+              <User className="w-4 h-4 mr-2" /> Human Review Required
+            </div>
+            <div className="p-4 space-y-4 text-xs">
+              <div className="text-text-primary leading-relaxed bg-bg-elevated p-3 border border-border-default rounded">
+                <p className="font-bold mb-2">Safety Constraint:</p>
+                <p className="text-status-review mb-2">Enter the verified QUANTITY directly from the physical document.</p>
+                <p className="text-text-secondary italic text-[10px]">Do not enter a financial amount. Settlement math is calculated safely server-side.</p>
               </div>
               
-              {(() => {
-                // Find latest route action in audit logs
-                const routeLog = [...(doc.audit_logs || [])].reverse().find(l => l.event_type.startsWith('ROUTE_ACTION'));
-                if (routeLog && routeLog.details && routeLog.details.results) {
-                  const results = routeLog.details.results;
-                  return (
-                    <div className="mt-3 border-t pt-2 border-gray-200">
-                      <h5 className="text-xs font-semibold text-gray-600 mb-1">Route Execution Results</h5>
-                      {results.map((r: any, idx: number) => (
-                        <div key={idx} className="bg-white p-2 border rounded mt-1 text-xs">
-                          <div className="flex justify-between">
-                            <span className="font-bold">{r.action_type}</span>
-                            <span className={`px-1 rounded font-bold ${
-                              r.status === 'SUCCEEDED' ? 'text-green-700 bg-green-100' : 
-                              r.status === 'RECONCILIATION_REQUIRED' ? 'text-yellow-700 bg-yellow-100' : 'text-red-700 bg-red-100'
-                            }`}>{r.status}</span>
-                          </div>
-                          <div className="text-gray-500 mt-1">Amount: ₹{r.amount}</div>
-                          <div className="text-gray-500">Mode: <span className="uppercase font-bold text-indigo-600">{r.mode}</span> ({r.provider})</div>
-                          {r.error && <div className="text-red-600 mt-1">{r.error}</div>}
-                        </div>
-                      ))}
-                    </div>
-                  );
-                }
-                return null;
-              })()}
-            </div>
-          )}
-
-          {doc.status === 'HUMAN_REVIEW' && (
-            <div className="mt-4 border-t pt-4">
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">Manual Override</h4>
-              <div className="space-y-2 text-sm">
+              <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs text-gray-500">Approved Release Amount</label>
-                  <input type="number" value={releaseAmt} onChange={e => setReleaseAmt(e.target.value)} className="w-full border rounded p-1" />
+                  <label className="block text-[10px] text-text-secondary uppercase mb-1">Accepted Qty</label>
+                  <input type="number" value={acceptedQty} onChange={e => setAcceptedQty(e.target.value)} className="w-full bg-bg-surface border border-border-default rounded p-2 text-text-primary focus:border-accent outline-none" min="0" />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-500">Proposed Reversal Amount</label>
-                  <input type="number" value={reversalAmt} onChange={e => setReversalAmt(e.target.value)} className="w-full border rounded p-1" />
+                  <label className="block text-[10px] text-text-secondary uppercase mb-1">Damaged Qty</label>
+                  <input type="number" value={damagedQty} onChange={e => setDamagedQty(e.target.value)} className="w-full bg-bg-surface border border-border-default rounded p-2 text-text-primary focus:border-accent outline-none" min="0" />
                 </div>
-                <button onClick={submitHumanReview} disabled={loading} className="w-full bg-yellow-500 text-white rounded p-1 hover:bg-yellow-600 disabled:opacity-50">
-                  Submit Review
-                </button>
+                <div>
+                  <label className="block text-[10px] text-text-secondary uppercase mb-1">Rejected Qty</label>
+                  <input type="number" value={rejectedQty} onChange={e => setRejectedQty(e.target.value)} className="w-full bg-bg-surface border border-border-default rounded p-2 text-text-primary focus:border-accent outline-none" min="0" />
+                </div>
               </div>
+              <button onClick={submitHumanReview} disabled={loading} className="w-full bg-status-review text-bg-base font-bold tracking-widest uppercase py-2 rounded hover:bg-status-review/90 disabled:opacity-50">
+                {loading ? 'Submitting...' : 'Submit Quantities'}
+              </button>
             </div>
-          )}
+          </div>
+        )}
 
-          {doc.audit_logs && doc.audit_logs.length > 0 && (
-            <div className="mt-4 border-t pt-4">
-              <h4 className="text-sm font-semibold text-gray-700 mb-2">Append-only Audit Trail</h4>
-              <div className="space-y-3">
-                {doc.audit_logs.map((log, idx) => (
-                  <div key={idx} className="bg-gray-50 p-2 rounded text-xs border border-gray-200 font-mono">
-                    <div className="font-bold text-gray-800">{log.event_type}</div>
-                    <div className="text-gray-500">{new Date(log.timestamp).toLocaleString()}</div>
-                    <div className="mt-1 text-gray-600 overflow-x-auto whitespace-pre-wrap">
-                      {JSON.stringify(log.details, null, 2)}
-                    </div>
-                    <div className="mt-1 text-gray-400 break-all text-[10px]">
-                      Hash: {log.event_hash}
-                    </div>
+        {doc.audit_logs && doc.audit_logs.length > 0 && (
+          <div className="border border-border-default rounded bg-bg-base overflow-hidden mt-4">
+             <div className="bg-bg-elevated p-2 text-xs font-bold border-b border-border-default flex items-center text-text-secondary tracking-widest">
+              <Hash className="w-4 h-4 mr-2" /> Append-only Audit Trail
+            </div>
+            <div className="p-3 text-[10px] text-text-secondary italic border-b border-border-default/50">
+              Each record is strictly linked to the previous record by cryptographic hash.
+            </div>
+            <div className="p-3 space-y-3">
+              {doc.audit_logs.map((log, idx) => (
+                <div key={idx} className="relative pl-4 border-l border-border-default/50 before:absolute before:w-2 before:h-2 before:bg-bg-elevated before:border before:border-border-default before:rounded-full before:-left-[4.5px] before:top-1.5">
+                  <div className="flex justify-between items-baseline mb-1">
+                    <span className="font-bold text-accent">{log.event_type}</span>
+                    <span className="text-text-secondary">{new Date(log.timestamp).toLocaleTimeString()}</span>
                   </div>
-                ))}
-              </div>
+                  <div className="bg-bg-elevated p-2 rounded border border-border-default/30 text-text-primary overflow-x-auto whitespace-pre-wrap mt-1">
+                    {JSON.stringify(log.details, null, 2)}
+                  </div>
+                  <div className="mt-1 flex items-center text-[9px] text-text-secondary font-mono break-all bg-bg-base/50 p-1 rounded">
+                    <Hash className="w-3 h-3 mr-1 inline-block text-border-default" /> 
+                    {log.event_hash}
+                  </div>
+                </div>
+              ))}
             </div>
-          )}
-        </div>
-      )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
