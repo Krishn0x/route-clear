@@ -2,7 +2,7 @@ from fastapi.testclient import TestClient
 from app.main import app
 from app.core.config import settings
 
-client = TestClient(app)
+client = TestClient(app, headers={"x-demo-token": "demo_mode_local"})
 
 def test_upload_oversized_file():
     oversized_data = b"0" * (settings.MAX_UPLOAD_SIZE_BYTES + 1)

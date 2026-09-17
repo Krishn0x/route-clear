@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { apiClient } from '../apiClient';
 import { DocumentResponse } from '../types';
 import { CheckCircle, AlertTriangle, Play } from 'lucide-react';
 
@@ -18,7 +18,7 @@ export default function SafetyPanel({ doc, onUpdate }: Props) {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.post(`/api/documents/${doc.id}/process`);
+      const res = await apiClient.post(`/api/documents/${doc.id}/process`);
       onUpdate(res.data);
     } catch (err: any) {
       console.error(err);
@@ -40,14 +40,14 @@ export default function SafetyPanel({ doc, onUpdate }: Props) {
     setLoading(true);
     setError(null);
     try {
-      await axios.post(`/api/documents/${doc.id}/human-review`, null, {
+      await apiClient.post(`/api/documents/${doc.id}/human-review`, null, {
         params: {
           approved_release_amount: releaseAmt,
           proposed_reversal_amount: reversalAmt
         }
       });
       // Fetch updated
-      const res = await axios.get(`/api/documents/${doc.id}`);
+      const res = await apiClient.get(`/api/documents/${doc.id}`);
       onUpdate(res.data);
     } catch (err: any) {
       console.error(err);

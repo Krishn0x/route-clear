@@ -15,7 +15,7 @@ from fastapi.testclient import TestClient
 from app.main import app
 from app.data.transfer_registry import get_transfer, list_transfers, SIMULATED_TRANSFERS
 
-client = TestClient(app)
+client = TestClient(app, headers={"x-demo-token": "demo_mode_local"})
 
 
 # ── Transfer registry unit tests ───────────────────────────────────────────────

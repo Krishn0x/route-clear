@@ -17,6 +17,9 @@ class Settings(BaseSettings):
     
     MAX_UPLOAD_SIZE_BYTES: int = 5 * 1024 * 1024 # 5 MB default
 
+    FRONTEND_ORIGIN: str = "http://localhost:5173"
+    DEMO_ACCESS_TOKEN: str = ""
+
     class Config:
         env_file = ".env"
 

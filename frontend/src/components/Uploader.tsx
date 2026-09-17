@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { apiClient } from '../apiClient';
 import axios from 'axios';
 import { Upload, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { DocumentResponse, TransferRecord } from '../types';
@@ -32,7 +33,7 @@ export default function Uploader({ onUploadComplete }: Props) {
     setTransferLoading(true);
     setTransferError(null);
 
-    axios.get<TransferRecord>(`/api/documents/transfers/${transferId.trim()}`, {
+    apiClient.get<TransferRecord>(`/api/documents/transfers/${transferId.trim()}`, {
       signal: controller.signal,
     })
       .then(res => {
@@ -68,7 +69,7 @@ export default function Uploader({ onUploadComplete }: Props) {
     formData.append('transfer_id', transferId.trim());
 
     try {
-      const res = await axios.post<DocumentResponse>('/api/documents/upload', formData, {
+      const res = await apiClient.post<DocumentResponse>('/api/documents/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       onUploadComplete(res.data);

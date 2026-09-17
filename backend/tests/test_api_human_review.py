@@ -27,7 +27,7 @@ def override_get_db():
         db.close()
 
 
-client = TestClient(app)
+client = TestClient(app, headers={"x-demo-token": "demo_mode_local"})
 
 @pytest.fixture(autouse=True)
 def setup_db():
