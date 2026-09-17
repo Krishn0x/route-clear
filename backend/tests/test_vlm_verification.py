@@ -222,3 +222,108 @@ async def test_vlm_timeout_error_propagation():
     
     with pytest.raises(VLMException):
         await provider.extract_pass1(b"image", "image/png", 105)
+
+from app.services.vlm.gemini import GeminiVLMProvider, VLMException
+from unittest.mock import patch, MagicMock
+
+@pytest.mark.asyncio
+async def test_production_gemini_missing_required_fields_fails_closed():
+    # This simulates the exact failure mode observed in live production
+    with patch('app.core.config.settings.GEMINI_API_KEY', 'dummy_key'):
+        provider = GeminiVLMProvider()
+        
+        class FakeResponse:
+            text = '{"overall_confidence": 0.8, "extracted_fields": {"accepted_quantity": {"value": 100, "confidence": 0.9}}}'
+        
+        mock_models = MagicMock()
+        mock_models.generate_content.return_value = FakeResponse()
+        provider.client = MagicMock(); provider.client.models = mock_models
+        
+        with pytest.raises(VLMException) as excinfo:
+            await provider.extract_pass1(b'dummy', 'image/png', 100)
+        
+        assert 'VLM Provider Failure' in str(excinfo.value)
+
+@pytest.mark.asyncio
+async def test_production_gemini_valid_required_fields_accepted():
+    # This validates that when the schema contract is fully respected, it parses correctly
+    with patch('app.core.config.settings.GEMINI_API_KEY', 'dummy_key'):
+        provider = GeminiVLMProvider()
+        
+        class FakeResponse:
+            text = '''{
+                "overall_confidence": 0.95,
+                "extracted_fields": {
+                    "accepted_quantity": {"value": 100, "confidence": 0.9},
+                    "signature_present": {"value": true, "confidence": 0.95, "evidence_text": "Signed"},
+                    "correction_detected": {"value": false, "confidence": 0.9}
+                }
+            }'''
+        
+        mock_models = MagicMock()
+        mock_models.generate_content.return_value = FakeResponse()
+        provider.client = MagicMock()
+        provider.client.models = mock_models
+        
+        result = await provider.extract_pass1(b'dummy', 'image/png', 100)
+        
+        assert result.extracted_fields.signature_present.value is True
+        assert result.extracted_fields.correction_detected.value is False
+        assert result.extracted_fields.accepted_quantity.value == 100
+
+
+@pytest.mark.parametrize("correction_val, expects_review, expected_reason", [
+    ('true', True, "Unresolved handwritten corrections detected"),
+    ('false', False, None),
+    ('null', True, "Correction status is unknown or unreadable")
+])
+@pytest.mark.asyncio
+async def test_correction_status_gates(correction_val, expects_review, expected_reason):
+    # This proves the exact behavior of correction_detected on the evidence gate.
+    from app.services.vlm.comparator import compare_passes, resolve
+    from app.services.vlm.verification import should_run_pass2
+    
+    with patch('app.core.config.settings.GEMINI_API_KEY', 'dummy_key'):
+        provider = GeminiVLMProvider()
+        
+        class FakeResponse:
+            text = f'''{{
+                "overall_confidence": 0.95,
+                "extracted_fields": {{
+                    "accepted_quantity": {{"value": 100, "confidence": 0.9, "evidence_region": {{"x": 0.1, "y": 0.1, "w": 0.1, "h": 0.1}}}},
+                    "signature_present": {{"value": true, "confidence": 0.95, "evidence_text": "Signed"}},
+                    "correction_detected": {{"value": {correction_val}, "confidence": 0.0}},
+                    "document_type": {{"value": "challan", "confidence": 0.9}}
+                }}
+            }}'''
+        
+        mock_models = MagicMock()
+        mock_models.generate_content.return_value = FakeResponse()
+        provider.client = MagicMock()
+        provider.client.models = mock_models
+        
+        # 1 & 2: Call Pass 1
+        pass1 = await provider.extract_pass1(b'original_image', 'image/png', 100)
+        
+        # 3: Call Pass 2 completely independently
+        # Assert the arguments passed to mock do not contain pass1
+        mock_models.generate_content.reset_mock()
+        pass2 = await provider.extract_pass2(b'original_image', 'image/png', 100)
+        
+        # Verify Pass 2 was called exactly with the same image and MIME (no Pass 1 output injected)
+        call_args = mock_models.generate_content.call_args
+        assert call_args is not None
+        # The prompt is in contents[0], image is in contents[1]
+        prompt_text = call_args.kwargs['contents'][0]
+        assert "pass1" not in prompt_text.lower()
+        
+        trigger, reasons = should_run_pass2(pass1)
+        comp = compare_passes(pass1, pass2, reasons)
+        
+        # 4: Resolve
+        res = resolve(pass1, pass2, comp)
+        
+        # 5: Assert
+        assert res.requires_human_review is expects_review
+        if expected_reason:
+            assert expected_reason in res.human_review_reason

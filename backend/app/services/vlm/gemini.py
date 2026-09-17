@@ -1,7 +1,8 @@
 import json
 import logging
 from typing import Optional, List
-from app.schemas.document import FulfillmentEvidenceSchema
+from pydantic import BaseModel
+from app.schemas.document import FulfillmentEvidenceSchema, FulfillmentFields
 from app.services.vlm.base import BaseVLMProvider
 from app.services.vlm.prompt import PASS1_PROMPT, PASS2_PROMPT
 from app.core.config import settings
@@ -12,6 +13,10 @@ logger = logging.getLogger(__name__)
 
 class VLMException(Exception):
     pass
+
+class ExpectedVLMOutput(BaseModel):
+    overall_confidence: float
+    extracted_fields: FulfillmentFields
 
 class GeminiVLMProvider(BaseVLMProvider):
     def __init__(self):
@@ -35,17 +40,16 @@ class GeminiVLMProvider(BaseVLMProvider):
                 mime_type=mime_type
             )
             
-            # The schema_template is expected in the prompt. We provide a dummy one to avoid format error,
-            # but ideally it would be generated using Pydantic. For this prototype, we'll just insert a generic template.
-            # (Note: In a robust setup, you'd pass a JSON schema string here).
-            schema_template = "{}"
+            # Generate strict schema string for the prompt
+            schema_template = json.dumps(ExpectedVLMOutput.model_json_schema(), indent=2)
             formatted_prompt = prompt.replace("{schema_template}", schema_template)
             
             response = self.client.models.generate_content(
                 model=self.model_name,
                 contents=[formatted_prompt, image_part],
                 config=genai.types.GenerateContentConfig(
-                    response_mime_type="application/json"
+                    response_mime_type="application/json",
+                    response_schema=ExpectedVLMOutput
                 )
             )
             
@@ -58,6 +62,8 @@ class GeminiVLMProvider(BaseVLMProvider):
             except json.JSONDecodeError:
                 raise VLMException("Malformed JSON returned by Gemini API.")
             
+            # Explicitly validate against Pydantic model (will raise ValidationError if still missing required fields)
+            # This ensures we strictly fail-closed.
             return FulfillmentEvidenceSchema(
                 provider="gemini",
                 model_identifier=self.model_name,

@@ -96,7 +96,9 @@ def is_evidence_sufficient(pass1: FulfillmentEvidenceSchema, pass2: FulfillmentE
         
     # Unresolved Corrections
     correction = getattr(f1, "correction_detected", None)
-    if correction and correction.value is True:
+    if not correction or correction.value is None:
+        failures.append("Correction status is unknown or unreadable")
+    elif correction.value is True:
         failures.append("Unresolved handwritten corrections detected on document")
         
     # Minimum Confidence Checks

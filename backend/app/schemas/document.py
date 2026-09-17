@@ -25,8 +25,8 @@ class FulfillmentFields(BaseModel):
     rejected_quantity: Optional[FieldEvidence[int]] = None
     missing_or_unaccounted_quantity: Optional[FieldEvidence[int]] = None
     unknown_quantity: Optional[FieldEvidence[int]] = None
-    signature_present: FieldEvidence[bool]
-    correction_detected: FieldEvidence[bool]
+    signature_present: FieldEvidence[Optional[bool]]
+    correction_detected: FieldEvidence[Optional[bool]]
     document_type: Optional[FieldEvidence[str]] = None
     suspicious_content_detected: Optional[FieldEvidence[bool]] = None
 
