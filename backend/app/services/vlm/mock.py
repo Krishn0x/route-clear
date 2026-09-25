@@ -1,6 +1,6 @@
 import json
 import hashlib
-from typing import List
+from typing import List, Optional
 from app.schemas.document import FulfillmentEvidenceSchema
 from app.services.vlm.base import BaseVLMProvider
 
@@ -38,11 +38,11 @@ class MockVLMProvider(BaseVLMProvider):
             return 'CONSISTENT_WRONG'
         return ordered_quantity
 
-    async def extract_pass1(self, image_bytes: bytes, mime_type: str, ordered_quantity: int) -> FulfillmentEvidenceSchema:
+    async def extract_pass1(self, image_bytes: bytes, mime_type: str, ordered_quantity: int, locked_model_name: Optional[str] = None) -> FulfillmentEvidenceSchema:
         scenario = self._determine_scenario(image_bytes, ordered_quantity)
         return self._generate_fixture(scenario, pass_num=1)
 
-    async def extract_pass2(self, image_bytes: bytes, mime_type: str, ordered_quantity: int) -> FulfillmentEvidenceSchema:
+    async def extract_pass2(self, image_bytes: bytes, mime_type: str, ordered_quantity: int, locked_model_name: Optional[str] = None) -> FulfillmentEvidenceSchema:
         scenario = self._determine_scenario(image_bytes, ordered_quantity)
         return self._generate_fixture(scenario, pass_num=2)
 

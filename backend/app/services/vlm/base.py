@@ -13,7 +13,8 @@ class BaseVLMProvider(ABC):
         self, 
         image_bytes: bytes, 
         mime_type: str, 
-        ordered_quantity: int
+        ordered_quantity: int,
+        locked_model_name: Optional[str] = None
     ) -> FulfillmentEvidenceSchema:
         """
         Pass 1: Independent extraction of evidence from the original document.
@@ -25,7 +26,8 @@ class BaseVLMProvider(ABC):
         self, 
         image_bytes: bytes, 
         mime_type: str,
-        ordered_quantity: int
+        ordered_quantity: int,
+        locked_model_name: Optional[str] = None
     ) -> FulfillmentEvidenceSchema:
         """
         Pass 2: Independent verification of the original document.

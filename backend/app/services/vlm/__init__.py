@@ -1,6 +1,8 @@
+from functools import lru_cache
 from app.core.config import settings
 from app.services.vlm.base import BaseVLMProvider
 
+@lru_cache()
 def get_vlm_provider() -> BaseVLMProvider:
     if settings.VLM_PROVIDER.lower() == "mock":
         from app.services.vlm.mock import MockVLMProvider
